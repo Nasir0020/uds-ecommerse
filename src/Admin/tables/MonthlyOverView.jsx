@@ -17,7 +17,7 @@ import AccountOutline from 'mdi-material-ui/AccountOutline'
 
 const salesData = [
   {
-    stats: '245k',
+    stats: '2345k',
     title: 'Sales',
     color: 'primary',
     icon: <TrendingUp sx={{ fontSize: '1.75rem' }} />
@@ -81,7 +81,7 @@ const MonthlyOverview = () => {
         subheader={
           <Typography variant='body2'>
             <Box component='span' sx={{ fontWeight: 600, color: 'text.primary' }}>
-              Total 48.5% growth
+              Total 52.5% growth
             </Box>{' '}
             😎 this month
           </Typography>

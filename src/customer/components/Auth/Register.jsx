@@ -104,7 +104,7 @@ useEffect(()=>{
 
 <div className="flex justify-center flex-col items-center">
      <div className="py-3 flex items-center ">
-        <p className="m-0 p-0">if you have already account ?</p>
+        <p className="m-0 p-0">If you already have  account ?</p>
         <Button onClick={()=> navigate("/login")} className="ml-5" size="small">
           Login
         </Button>
