@@ -35,6 +35,7 @@ export const confirmedOrderRequest = () => ({
     type: CONFIRMED_ORDER_FAILURE,
     payload: error,
   });
+
   
   // Action creators for placed order
   export const placedOrderRequest = () => ({
@@ -50,6 +51,7 @@ export const confirmedOrderRequest = () => ({
     type: PLACED_ORDER_FAILURE,
     payload: error,
   });
+
   
   // Action creators for delivered order
   export const deliveredOrderRequest = () => ({
@@ -65,6 +67,7 @@ export const confirmedOrderRequest = () => ({
     type: DELIVERED_ORDER_FAILURE,
     payload: error,
   });
+  
   
   // Action creators for canceled order
   export const canceledOrderRequest = () => ({

@@ -11,7 +11,7 @@ export const color = [
 
 export const filters = [
   {
-    id: "color",
+    id: "color", 
     name: "Color",
     options: [
       { value: "white", label: "White" },

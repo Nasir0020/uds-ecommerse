@@ -34,6 +34,7 @@ export const navigation = {
               { name: 'Kurtas', id: 'kurtas' },
             ],
           },
+          
           {
             id: 'accessories',
             name: 'Accessories',

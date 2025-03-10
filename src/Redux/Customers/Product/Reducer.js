@@ -44,24 +44,28 @@ const customerProductReducer = (state = initialState, action) => {
           loading: true,
           error: null,
         };
+
       case CREATE_PRODUCT_SUCCESS:
         return {
           ...state,
           loading: false,
           products: [...state.products, action.payload],
         };
+
       case CREATE_PRODUCT_FAILURE:
         return {
           ...state,
           loading: false,
           error: action.payload,
         };
+
       case UPDATE_PRODUCT_REQUEST:
         return {
           ...state,
           loading: true,
           error: null,
         };
+        
       case UPDATE_PRODUCT_SUCCESS:
       
         return {

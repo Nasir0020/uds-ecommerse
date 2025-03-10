@@ -12,7 +12,8 @@ const steps = [
   'Order Confirmed',
   'Shipped',
   'Out For Delivery',
-  'Delivered'
+  'Delivered' 
+  
 ];
 
 

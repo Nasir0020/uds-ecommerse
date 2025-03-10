@@ -481,7 +481,7 @@ export default function Product() {
           </div>
         </section>
 
-        {/* {backdrop} */}
+        {/*  {backdrop}  */}
         <section>
          <BackdropComponent open={isLoaderOpen}/>
         </section>

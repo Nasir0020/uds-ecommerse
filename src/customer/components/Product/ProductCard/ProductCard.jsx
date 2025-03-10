@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
   const navigate= useNavigate();
   
 
-  const handleNavigate=()=>{
+  const handleNavigate=()=>{ 
     navigate(`/product/${product?._id}`)
   }
 
@@ -34,5 +34,6 @@ const ProductCard = ({ product }) => {
    </div>
   );
 };
+
 
 export default ProductCard;

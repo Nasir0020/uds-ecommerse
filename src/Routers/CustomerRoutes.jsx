@@ -19,6 +19,8 @@ import Footer from "../customer/components/Footer/Footer";
 import PaymentSuccess from "../customer/components/paymentSuccess/PaymentSuccess";
 import RateProduct from "../customer/components/ReviewProduct/RateProduct";
 
+
+
 const CustomerRoutes = () => {
     const location = useLocation();
     

@@ -13,7 +13,7 @@ export default function TimelineHorizontal() {
       <TimelineItem>
         <TimelineOppositeContent color="text.secondary">
           09:30 am
-        </TimelineOppositeContent>
+         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot />
           <TimelineConnector />

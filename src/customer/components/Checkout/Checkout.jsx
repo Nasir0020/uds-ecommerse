@@ -13,7 +13,7 @@ const steps = [
   "Login",
   "Delivery Adress",
   "Order Summary",
-  "Payment",
+  "Payment", 
 ];
 
 export default function Checkout() {
@@ -70,7 +70,7 @@ console.log("step",step)
           </Typography>
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Box sx={{ flex: "1 1 auto" }} />
-            <Button onClick={handleReset}>Reset</Button>
+            <Button onClick={handleReset}> Reset </Button>
           </Box>
         </React.Fragment>
       ) : (

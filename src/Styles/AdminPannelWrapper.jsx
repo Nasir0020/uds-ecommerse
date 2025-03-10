@@ -36,6 +36,7 @@ const AdminPannelWrapper = styled('div')(({ theme }) => ({
       '& .apexcharts-xaxistooltip-text': {
         color: theme.palette.text.primary
       },
+
       '&:after': {
         borderBottomColor: theme.palette.mode === 'light' ? theme.palette.grey[50] : theme.palette.background.default
       },
@@ -49,6 +50,7 @@ const AdminPannelWrapper = styled('div')(({ theme }) => ({
       '& .apexcharts-yaxistooltip-text': {
         color: theme.palette.text.primary
       },
+      
       '&:after': {
         borderLeftColor: theme.palette.mode === 'light' ? theme.palette.grey[50] : theme.palette.background.default
       },

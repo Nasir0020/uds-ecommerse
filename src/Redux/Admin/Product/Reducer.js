@@ -51,18 +51,21 @@ const productReducer = (state = initialState, action) => {
         loading: false,
         products: [...state.products, action.payload],
       };
+      
     case CREATE_PRODUCT_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
+
     case UPDATE_PRODUCT_REQUEST:
       return {
         ...state,
         loading: true,
         error: null,
       };
+
     case UPDATE_PRODUCT_SUCCESS:
       return {
         ...state,
@@ -71,12 +74,14 @@ const productReducer = (state = initialState, action) => {
           product._id === action.payload._id ? action.payload : product
         ),
       };
+
     case UPDATE_PRODUCT_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
+
     case DELETE_PRODUCT_REQUEST:
       return {
         ...state,

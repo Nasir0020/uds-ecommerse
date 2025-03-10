@@ -103,7 +103,7 @@ const OrderDetails = () => {
                     sx={{ fontSize: "2rem" }}
                     className="px-2 text-5xl"
                   />
-                  <span>Rate & Review Product</span>
+                  <span>Rate & Review the Product</span>
                 </Box>
               }
             </Grid>

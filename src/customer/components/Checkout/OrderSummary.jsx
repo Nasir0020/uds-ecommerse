@@ -56,7 +56,7 @@ const handleCreatePayment=()=>{
                 <span>₹{order.order?.totalPrice}</span>
               </div>
               <div className="flex justify-between">
-                <span>Discount</span>
+                <span> Discount </span>
                 <span className="text-green-700">-₹{order.order?.discounte}</span>
               </div>
               <div className="flex justify-between">
@@ -76,7 +76,8 @@ const handleCreatePayment=()=>{
               type="submit"
               sx={{ padding: ".8rem 2rem", marginTop: "2rem", width: "100%" }}
             >
-              Payment
+              Payment 
+               
             </Button>
           </div>
         </div>
@@ -86,3 +87,4 @@ const handleCreatePayment=()=>{
 };
 
 export default OrderSummary;
+

@@ -47,6 +47,7 @@ const Cart = () => {
               <span className="text-green-700">Free</span>
             </div>
             <hr />
+
             <div className="flex justify-between font-bold text-lg">
               <span>Total Amount</span>
               <span className="text-green-700">₹{cart.cart?.totalDiscountedPrice}</span>
@@ -59,7 +60,7 @@ const Cart = () => {
             type="submit"
             sx={{ padding: ".8rem 2rem", marginTop: "2rem", width: "100%" }}
           >
-            Check Out
+            Check Out 
           </Button>
         </div>
       </div>

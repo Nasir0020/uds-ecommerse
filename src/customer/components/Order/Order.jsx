@@ -10,8 +10,10 @@ const orderStatus = [
   { label: "On The Way", value: "onTheWay" },
   { label: "Delivered", value: "delevered" },
   { label: "Cancelled", value: "cancelled" },
-  { label: "Returned", vlue: "returned" },
+  { label: "Returned", vlue: "returned" }, 
+
 ];
+
 
 const Order = () => {
   const dispatch = useDispatch();

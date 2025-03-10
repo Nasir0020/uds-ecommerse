@@ -11,6 +11,7 @@ import {
     GET_ALL_RATINGS_SUCCESS,
     GET_ALL_RATINGS_FAILURE
   } from './ActionTyp';
+  
 import api from '../../../config/api';
 
 export const createReview = (resData) => {
