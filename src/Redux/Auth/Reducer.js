@@ -22,13 +22,15 @@ const authReducer = (state = initialState, action) => {
     case REGISTER_REQUEST:
     case LOGIN_REQUEST:
       return { ...state, isLoading: true, error: null };
+    // First issue, you were not updating the state with the user data
     case REGISTER_SUCCESS:
-      return { ...state, isLoading: false };
+      return { ...state, isLoading: false, user: action.payload };
     case REGISTER_FAILURE:
     case LOGIN_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
+    // Second issue, you were not updating the state with the user data
     case LOGIN_SUCCESS:
-      return { ...state, isLoading: false };
+      return { ...state, isLoading: false, user: action.payload };
     case GET_USER_REQUEST:
       return { ...state, isLoading: true, error: null };
     case GET_USER_SUCCESS:

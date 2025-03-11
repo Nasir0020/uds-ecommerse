@@ -421,7 +421,9 @@ export default function Navigation() {
                           cursor: "pointer",
                         }}
                       >
-                        {auth.user?.firstName[0].toUpperCase()}
+                        {/* WRONG:: {auth.user?.firstName[0].toUpperCase()} */}
+                        {/* Third issue: Fallback to "U" if the first name is not available */}
+                        {auth.user?.firstName?.[0]?.toUpperCase() || "U"}
                       </Avatar>
                       {/* <Button
                         id="basic-button"
@@ -444,7 +446,7 @@ export default function Navigation() {
                         <MenuItem onClick={handleCloseUserMenu}>
                           Profile
                         </MenuItem>
-                        
+
                         <MenuItem onClick={handleMyOrderClick}>
                           My Orders
                         </MenuItem>

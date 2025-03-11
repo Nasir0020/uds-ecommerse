@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductReviewCard from "./ProductReviewCard";
 import { Box, Button, Grid, LinearProgress, Rating } from "@mui/material";
 import HomeProductCard from "../../Home/HomeProductCard";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { findProductById } from "../../../../Redux/Customers/Product/Action";
 import { addItemToCart } from "../../../../Redux/Customers/Cart/Action";
@@ -70,10 +69,10 @@ export default function ProductDetails() {
   const [activeImage, setActiveImage] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { customersProduct,review } = useSelector((store) => store);
+  const { customersProduct, review } = useSelector((store) => store);
   const { productId } = useParams();
   const jwt = localStorage.getItem("jwt");
-  // console.log("param",productid,customersProduct.product)
+  const scrollRef = useRef(null);
 
   const handleSetActiveImage = (image) => {
     setActiveImage(image);
@@ -86,15 +85,53 @@ export default function ProductDetails() {
   };
 
   useEffect(() => {
-    const data = { productId: productId, jwt };
-    dispatch(findProductById(data));
-    dispatch(getAllReviews(productId));
-  }, [productId]);
+    // Scroll to top when product ID changes
+    window.scrollTo(0, 0);
 
-  // console.log("reviews ",review)
+    // Try to fetch the product from API first
+    if (productId) {
+      // For real products with MongoDB IDs
+      if (productId.match(/^[0-9a-fA-F]{24}$/)) {
+        const data = { productId: productId, jwt };
+        dispatch(findProductById(data));
+      }
+      // For dummy products, check localStorage
+      else {
+        const storedProduct = localStorage.getItem(`product_${productId}`);
+        if (storedProduct) {
+          // If found in localStorage, update Redux state
+          dispatch({
+            type: "FIND_PRODUCT_BY_ID_SUCCESS",
+            payload: JSON.parse(storedProduct),
+          });
+        } else {
+          // If not found in localStorage, try API anyway
+          const data = { productId: productId, jwt };
+          dispatch(findProductById(data));
+        }
+      }
+    }
+
+    // Always fetch reviews if available
+    dispatch(getAllReviews(productId));
+  }, [productId, dispatch, jwt]);
+
+  useEffect(() => {
+    // This will run after the component renders with new data
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: "auto", block: "start" });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [customersProduct.product]);
+
+  useEffect(() => {
+    // Debug log to check similar products data
+    console.log("Similar products data:", gounsPage1);
+  }, []);
 
   return (
-    <div className="bg-white lg:px-20">
+    <div className="bg-white lg:px-20" ref={scrollRef}>
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol
@@ -141,24 +178,27 @@ export default function ProductDetails() {
           <div className="flex flex-col items-center ">
             <div className=" overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
               <img
-                src={activeImage?.src || customersProduct.product?.imageUrl}
-                alt={product.images[0].alt}
+                src={
+                  activeImage?.src ||
+                  customersProduct.product?.imageUrl ||
+                  customersProduct.product?.image
+                }
+                alt={customersProduct.product?.title || product.images[0].alt}
                 className="h-full w-full object-cover object-center"
               />
             </div>
             <div className="flex flex-wrap space-x-5 justify-center">
-              {product.images.map((image) => (
-                <div
-                  onClick={() => handleSetActiveImage(image)}
-                  className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4"
-                >
-                  <img
-                    src={image.src}
-                    alt={product.images[1].alt}
-                    className="h-full w-full object-cover object-center"
-                  />
-                </div>
-              ))}
+              {/* Show just a single thumbnail of the actual product image */}
+              <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4">
+                <img
+                  src={
+                    customersProduct.product?.imageUrl ||
+                    customersProduct.product?.image
+                  }
+                  alt={customersProduct.product?.title || "Product thumbnail"}
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
             </div>
           </div>
 
@@ -342,7 +382,7 @@ export default function ProductDetails() {
             <Grid container spacing={7}>
               <Grid item xs={7}>
                 <div className="space-y-5">
-                  { review.reviews?.map((item, i) => (
+                  {review.reviews?.map((item, i) => (
                     <ProductReviewCard item={item} />
                   ))}
                 </div>
@@ -493,11 +533,19 @@ export default function ProductDetails() {
         </section>
 
         {/* similer product */}
-        <section className=" pt-10">
-          <h1 className="py-5 text-xl font-bold">Similer Products</h1>
+        <section className="pt-10">
+          <h1 className="py-5 text-xl font-bold">Similar Products</h1>
           <div className="flex flex-wrap space-y-5">
-            {gounsPage1.map((item) => (
-              <HomeProductCard product={item} />
+            {gounsPage1.map((item, index) => (
+              <HomeProductCard
+                key={item.id || `similar-product-${index}`}
+                product={{
+                  ...item,
+                  // Ensure both image properties exist
+                  imageUrl: item.imageUrl || item.image,
+                  image: item.image || item.imageUrl,
+                }}
+              />
             ))}
           </div>
         </section>

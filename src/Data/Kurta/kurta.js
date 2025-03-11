@@ -16,7 +16,7 @@ export const kurtaPage1=[
         "color": "",
         "selling_price": "₹1,082",
         "price": "₹2,799",
-        "disscount": "61% off",
+        "disscount": "61% off", 
         "size": ""
     },
     {
